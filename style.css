@@ -1,0 +1,195 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0b1020;
+  color: white;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.background-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0,255,140,0.15), transparent 70%);
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
+.screen.active {
+  display: block;
+}
+
+.logo {
+  font-size: 60px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.card,
+.final-card,
+.message-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 22px;
+  padding: 22px;
+}
+
+.card {
+  margin-bottom: 28px;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 16px 26px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: scale(1.03);
+}
+
+.primary-btn {
+  background: #14f195;
+  color: #071019;
+  font-weight: 700;
+}
+
+.secondary-btn {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.top-bar {
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.goal-area {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  margin-bottom: 20px;
+}
+
+.goal {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 120px;
+  border: 5px solid white;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.goalkeeper {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 38px;
+  transition: all 0.4s ease;
+}
+
+.ball {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 42px;
+  transition: all 0.7s ease;
+}
+
+.ball.shoot {
+  bottom: 220px;
+}
+
+.message-card {
+  margin-top: 20px;
+}
+
+.message-card h2 {
+  margin-bottom: 14px;
+}
+
+.message-card p {
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 18px;
+}
+
+.hidden {
+  display: none;
+}
+
+.final-card {
+  margin: 24px 0;
+  text-align: left;
+}
+
+.skills {
+  margin-top: 20px;
+}
+
+.skill {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.final-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.link-btn {
+  width: 100%;
+}
