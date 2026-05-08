@@ -1,3 +1,4 @@
+let locked = false;
 const startBtn = document.getElementById("start-btn");
 const startScreen = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-screen");
@@ -33,9 +34,16 @@ targets.forEach(target => {
 
   target.addEventListener("click", () => {
 
-    const x = target.dataset.x;
-    const y = target.dataset.y;
+    const rect = target.getBoundingClientRect();
+    const parentRect = document.querySelector(".goal-area").getBoundingClientRect();
 
+const x = rect.left + rect.width / 2 - parentRect.left;
+const y = rect.top + rect.height / 2 - parentRect.top;
+
+ball.style.left = x + "px";
+ball.style.top = y + "px";
+ball.style.transform = "translate(-50%, -50%)";
+    
     goalkeeper.style.transform = "translateX(-40px)";
 
     ball.style.transform = `translate(${x}px, ${y}px)`;
