@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -9,37 +8,17 @@ body {
   font-family: 'Inter', sans-serif;
   background: #0b1020;
   color: white;
-  min-height: 100vh;
   overflow: hidden;
 }
 
-.background-glow {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(0,255,140,0.15), transparent 70%);
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 0;
-}
-
 .container {
-  position: relative;
-  z-index: 1;
-  width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+  padding: 20px;
 }
 
 .screen {
   display: none;
-  width: 100%;
   text-align: center;
 }
 
@@ -47,185 +26,111 @@ body {
   display: block;
 }
 
+/* START */
 .logo {
   font-size: 60px;
-  margin-bottom: 18px;
+  margin-top: 40px;
 }
 
 h1 {
-  font-size: 36px;
-  margin-bottom: 12px;
+  font-size: 32px;
+  margin: 20px 0;
 }
 
 .subtitle {
   opacity: 0.8;
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.card,
-.final-card,
-.message-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  border-radius: 22px;
-  padding: 22px;
-}
-
-.card {
-  margin-bottom: 28px;
-}
-
-.primary-btn,
-.secondary-btn {
-  border: none;
-  border-radius: 999px;
-  padding: 16px 26px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: transform 0.2s ease;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.primary-btn:hover,
-.secondary-btn:hover {
-  transform: scale(1.03);
-}
-
-.primary-btn {
-  background: #14f195;
-  color: #071019;
-  font-weight: 700;
-}
-
-.secondary-btn {
-  background: rgba(255,255,255,0.08);
-  color: white;
-}
-
-.top-bar {
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.goal-area {
-  position: relative;
-  width: 100%;
-  height: 360px;
   margin-bottom: 20px;
 }
 
-.goal {
-  width: 95%;
-  height: 220px;;
-  border: 5px solid white;
-  border-bottom: none;
-  border-radius: 12px 12px 0 0;
-  background-image:
-  linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
-  position: absolute;
-  z-index: 1;
-
-background-size: 25px 25px;
-overflow: hidden;
+.card {
+  background: rgba(255,255,255,0.06);
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 20px;
 }
 
+/* BUTTONS */
+.primary-btn {
+  background: #14f195;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 14px 22px;
+  border-radius: 999px;
+  color: white;
+}
+
+/* GAME AREA */
+.goal-area {
+  position: relative;
+  height: 360px;
+}
+
+/* PORTA GRANDE */
+.goal {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 220px;
+  border: 4px solid white;
+  border-bottom: none;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+/* RETE ANIMATA */
+.goal.animate {
+  animation: net 0.3s ease;
+}
+
+@keyframes net {
+  0% { transform: translateX(-50%) scaleY(1); }
+  50% { transform: translateX(-50%) scaleY(1.05); }
+  100% { transform: translateX(-50%) scaleY(1); }
+}
+
+/* PORTIERE */
 .goalkeeper {
   position: absolute;
-  top: 100px;
+  top: 110px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 38px;
-  transition: all 0.4s ease;
   z-index: 3;
   pointer-events: none;
 }
 
+/* PALLONE */
 .ball {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 42px;
-  transition: all 0.7s ease;
+  font-size: 40px;
   z-index: 2;
+  transition: all 0.6s ease;
   pointer-events: none;
 }
 
-
-.message-card {
-  margin-top: 20px;
-}
-
-.message-card h2 {
-  margin-bottom: 14px;
-}
-
-.message-card p {
-  line-height: 1.6;
-  opacity: 0.9;
-  margin-bottom: 18px;
-}
-
-.hidden {
-  display: none;
-}
-
-.final-card {
-  margin: 24px 0;
-  text-align: left;
-}
-
-.skills {
-  margin-top: 20px;
-}
-
-.skill {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.final-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.goal.animate-net {
-  animation: netMove 0.4s ease;
-}
-
-@keyframes netMove {
-
-  0% {
-    transform: translateX(-50%) scaleY(1);
-  }
-
-  50% {
-    transform: translateX(-50%) scaleY(1.05);
-  }
-
-  100% {
-    transform: translateX(-50%) scaleY(1);
-  }
-}
+/* TARGET GRID */
 .target-grid {
-
   position: absolute;
-
-  top: 40px;
+  top: 10px;
   left: 50%;
-
   transform: translateX(-50%);
-
   width: 95%;
   height: 220px;
 
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 
@@ -233,44 +138,51 @@ overflow: hidden;
 }
 
 .target {
-
-  width: 100%;
-  height: 100%;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-
-  position: relative;
-
-  z-index: 11;
 }
 
 .target::after {
-
   content: "";
-
-  width: 20px;
-  height: 20px;
-
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-
   background: rgba(255,255,255,0.12);
-
   border: 1px solid rgba(255,255,255,0.25);
-
-  backdrop-filter: blur(3px);
-
-  transition: 0.2s;
 }
 
-.target:hover::after {
-  transform: scale(1.3);
-  background: rgba(20,241,149,0.5);
+/* MESSAGE */
+.message-card {
+  margin-top: 20px;
+  background: rgba(255,255,255,0.06);
+  padding: 20px;
+  border-radius: 16px;
 }
-.link-btn {
-  width: 100%;
+
+.hidden {
+  display: none;
+}
+
+/* FINAL */
+.final-card {
+  margin-top: 20px;
+  text-align: left;
+  background: rgba(255,255,255,0.06);
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.skill {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.final-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
