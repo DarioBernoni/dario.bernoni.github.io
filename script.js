@@ -32,7 +32,10 @@ startBtn.addEventListener("click", () => {
 
 targets.forEach(target => {
 
-  target.addEventListener("click", () => {
+target.addEventListener("click", () => {
+
+  if (locked) return;
+  locked = true;
 
     const rect = target.getBoundingClientRect();
     const parentRect = document.querySelector(".goal-area").getBoundingClientRect();
@@ -62,7 +65,7 @@ ball.style.transform = "translate(-50%, -50%)";
 });
 
 nextBtn.addEventListener("click", () => {
-
+locked = false;
   currentShot++;
 
   if (currentShot >= messages.length) {
