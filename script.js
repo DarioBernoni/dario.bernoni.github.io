@@ -1,6 +1,5 @@
 
 const startBtn = document.getElementById('start-btn');
-const shootBtn = document.getElementById('shoot-btn');
 const nextBtn = document.getElementById('next-btn');
 
 const startScreen = document.getElementById('start-screen');
@@ -17,31 +16,52 @@ const messageText = document.getElementById('message-text');
 let currentShot = 0;
 
 const messages = [
-  "Ciao! Sono Dario, laureando in Ingegneria Informatica.",
-  "Mi appassionano tecnologia, UX e progetti creativi.",
-  "Amo trasformare idee semplici in esperienze interattive.",
-  "Mi piace lavorare in team e imparare velocemente.",
-  "Grazie per aver giocato. Vuoi conoscermi meglio?"
+  "Ciao! Sono Dario, laureato in ingegneria Informatica e appassionato di calcio!",
+
+  "Da 3 anni sono Data Analyst, istruttore e allenatore di calcio, oltre che Referee Manager per la mia squadra in Eccellenza!",
+
+  "Sono un ragazzo creativo e intraprendente, pronto a cogliere ogni opportunità nel mondo del calcio.",
+
+  "Amo lavorare in team e sviluppare idee anche controintuitive.",
+
+  "Complimenti per i gol! Se vuoi sapere di più ecco i miei contatti!"
 ];
 
 startBtn.addEventListener('click', () => {
   startScreen.classList.remove('active');
   gameScreen.classList.add('active');
 });
+const targets = document.querySelectorAll('.target');
+const goal = document.querySelector('.goal');
 
-shootBtn.addEventListener('click', () => {
+targets.forEach(target => {
 
-  shootBtn.disabled = true;
+  target.addEventListener('click', () => {
 
-  const randomMove = Math.random() > 0.5 ? '-80px' : '80px';
-  goalkeeper.style.transform = `translateX(${randomMove})`;
+    const x = target.dataset.x;
+    const y = target.dataset.y;
 
-  ball.classList.add('shoot');
+    const randomMove = Math.random() > 0.5 ? '-120px' : '120px';
 
-  setTimeout(() => {
-    messageText.innerText = messages[currentShot];
-    messageCard.classList.remove('hidden');
-  }, 700);
+    goalkeeper.style.transform = `translateX(${randomMove})`;
+
+    ball.style.transition = 'all 0.7s ease';
+
+    ball.style.transform =
+      `translate(${x}px, ${y}px) scale(0.7)`;
+
+    goal.classList.add('animate-net');
+
+    setTimeout(() => {
+
+      messageText.innerText = messages[currentShot];
+
+      messageCard.classList.remove('hidden');
+
+    }, 700);
+
+  });
+
 });
 
 nextBtn.addEventListener('click', () => {
@@ -58,9 +78,11 @@ nextBtn.addEventListener('click', () => {
 
   messageCard.classList.add('hidden');
 
-  ball.classList.remove('shoot');
+  ball.style.transform =
+'translateX(-50%)';
+  goal.classList.remove('animate-net');
 
   goalkeeper.style.transform = 'translateX(-50%)';
 
-  shootBtn.disabled = false;
+
 });
