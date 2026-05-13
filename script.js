@@ -20,7 +20,7 @@ let locked=false;
 
 const messages=[
 "Hi, I’m Dario. Data analyst, football mind, creative builder.",
-"3+ years between data, coaching and football operations.",
+"3+ years between data, coaching and football operations. Referee Manager",
 "I love turning unconventional ideas into real projects.",
 "Teamwork, creativity and football culture drive everything I do.",
 "You scored all 5 penalties. Now let’s talk."
