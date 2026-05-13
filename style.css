@@ -15,8 +15,6 @@ height:100vh;
 position:relative;
 }
 
-/* CINEMATIC VIGNETTE */
-
 body::before{
 content:"";
 position:fixed;
@@ -24,12 +22,10 @@ inset:0;
 background:
 radial-gradient(circle at center,
 transparent 35%,
-rgba(0,0,0,.45) 100%);
+rgba(0,0,0,.48) 100%);
 pointer-events:none;
 z-index:0;
 }
-
-/* STADIUM LIGHTS */
 
 body::after{
 content:"";
@@ -39,7 +35,8 @@ left:50%;
 transform:translateX(-50%);
 width:140%;
 height:320px;
-background:radial-gradient(circle,
+background:
+radial-gradient(circle,
 rgba(0,255,255,.18) 0%,
 transparent 70%);
 filter:blur(60px);
@@ -53,16 +50,17 @@ z-index:2;
 max-width:430px;
 height:100vh;
 margin:0 auto;
-padding:18px;
+padding:12px 18px 24px;
 display:flex;
 flex-direction:column;
-justify-content:center;
+justify-content:flex-start;
 }
 
 .screen{
 display:none;
 text-align:center;
-animation:fade .5s ease;
+animation:fade .45s ease;
+padding-top:12px;
 }
 
 .screen.active{
@@ -72,7 +70,7 @@ display:block;
 @keyframes fade{
 from{
 opacity:0;
-transform:translateY(15px);
+transform:translateY(12px);
 }
 to{
 opacity:1;
@@ -81,32 +79,34 @@ transform:translateY(0);
 }
 
 .logo{
-font-size:68px;
-margin-top:10px;
+font-size:62px;
+margin-top:0;
+
 filter:
 drop-shadow(0 0 18px rgba(0,255,255,.35))
-drop-shadow(0 0 40px rgba(0,255,255,.15));
+drop-shadow(0 0 40px rgba(0,255,255,.12));
+
 animation:floatLogo 4s ease-in-out infinite;
 }
 
 @keyframes floatLogo{
 0%{transform:translateY(0);}
-50%{transform:translateY(-8px);}
+50%{transform:translateY(-6px);}
 100%{transform:translateY(0);}
 }
 
 h1{
-font-size:36px;
+font-size:34px;
 font-weight:800;
 letter-spacing:-1px;
-margin:18px 0 10px;
+margin:12px 0 8px;
 }
 
 .subtitle{
 opacity:.72;
-font-size:15px;
+font-size:14px;
 line-height:1.5;
-margin-bottom:28px;
+margin-bottom:18px;
 }
 
 .card{
@@ -115,7 +115,7 @@ border:1px solid rgba(255,255,255,.08);
 backdrop-filter:blur(18px);
 padding:18px;
 border-radius:24px;
-margin-bottom:20px;
+margin-bottom:16px;
 box-shadow:
 0 10px 30px rgba(0,0,0,.35),
 0 0 40px rgba(0,255,255,.05);
@@ -133,6 +133,7 @@ font-size:15px;
 letter-spacing:.3px;
 box-shadow:
 0 0 18px rgba(0,255,255,.35);
+
 transition:all .25s ease;
 }
 
@@ -152,20 +153,19 @@ backdrop-filter:blur(10px);
 
 .goal-area{
 position:relative;
-height:470px;
-margin-top:5px;
+height:420px;
+margin-top:-6px;
 perspective:1000px;
 }
 
-/* GOAL */
-
 .goal{
 position:absolute;
-top:15px;
+top:10px;
 left:50%;
 transform:translateX(-50%);
 width:96%;
-height:280px;
+height:260px;
+
 border:5px solid rgba(255,255,255,.92);
 border-bottom:none;
 border-radius:18px;
@@ -199,119 +199,70 @@ transform:translateX(-50%) scale(1);
 }
 }
 
-/* GOALKEEPER */
-
 .goalkeeper{
 position:absolute;
-width:150px;
-height:auto;
-top:112px;
+width:165px;
+top:95px;
 left:50%;
+
 transform:
-translateX(-50%)
-translateY(0)
-scale(1);
+translateX(-50%);
 
 z-index:5;
 pointer-events:none;
 
 transition:
-transform .58s cubic-bezier(.18,.9,.15,1.2),
-filter .3s ease;
+transform .58s cubic-bezier(.18,.9,.15,1.2);
 
 filter:
 drop-shadow(0 16px 18px rgba(0,0,0,.45))
 drop-shadow(0 0 12px rgba(0,255,255,.12));
 }
 
-/* REALISTIC DIVE LEFT */
-
 .goalkeeper.left{
 transform:
-translateX(calc(-50% - 115px))
-translateY(18px)
-rotate(-28deg)
-scale(1.08);
+translateX(calc(-50% - 110px))
+translateY(12px)
+rotate(-24deg)
+scale(1.06);
 }
-
-/* REALISTIC DIVE RIGHT */
 
 .goalkeeper.right{
 transform:
-translateX(calc(-50% + 115px))
-translateY(18px)
-rotate(28deg)
-scale(1.08);
+translateX(calc(-50% + 110px))
+translateY(12px)
+rotate(24deg)
+scale(1.06);
 }
-
-/* CENTER SAVE */
 
 .goalkeeper.center{
 transform:
 translateX(-50%)
-translateY(-22px)
-scale(1.14);
+translateY(-12px)
+scale(1.12);
 }
-
-/* ANTICIPATION */
-
-.goalkeeper.prepare-left{
-transform:
-translateX(calc(-50% + 12px))
-rotate(4deg);
-}
-
-.goalkeeper.prepare-right{
-transform:
-translateX(calc(-50% - 12px))
-rotate(-4deg);
-}
-
-.goalkeeper.prepare-center{
-transform:
-translateX(-50%)
-translateY(6px)
-scale(.98);
-}
-
-/* BALL */
 
 .ball{
 position:absolute;
 width:46px;
 height:46px;
 left:50%;
-top:378px;
+top:345px;
 transform:translate(-50%,-50%);
 z-index:7;
 pointer-events:none;
 
 filter:
 drop-shadow(0 10px 14px rgba(0,0,0,.45));
-
-transition:none;
 }
-
-/* BALL GLOW */
-
-.ball::after{
-content:"";
-position:absolute;
-inset:-12px;
-background:rgba(0,255,255,.22);
-border-radius:50%;
-filter:blur(14px);
-}
-
-/* TARGETS */
 
 .target-grid{
 position:absolute;
-top:15px;
+top:10px;
 left:50%;
 transform:translateX(-50%);
 width:96%;
-height:280px;
+height:260px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 grid-template-rows:repeat(3,1fr);
@@ -328,32 +279,47 @@ touch-action:manipulation;
 
 .target::after{
 content:"";
-width:18px;
-height:18px;
+width:16px;
+height:16px;
 border-radius:50%;
 background:rgba(255,255,255,.08);
 border:1px solid rgba(255,255,255,.16);
 backdrop-filter:blur(8px);
-
 transition:all .2s ease;
 }
 
 .target:active::after{
-transform:scale(1.4);
+transform:scale(1.35);
 background:rgba(0,255,255,.45);
 }
 
-/* COMMENTARY */
+/* RESULT ICON */
+
+.result-icon{
+font-size:46px;
+margin-bottom:10px;
+font-weight:900;
+}
+
+.result-icon.goal{
+color:#00ffd0;
+text-shadow:0 0 18px rgba(0,255,208,.5);
+}
+
+.result-icon.saved{
+color:#ff5e5e;
+text-shadow:0 0 18px rgba(255,94,94,.5);
+}
 
 .message-card{
-margin-top:16px;
+margin-top:6px;
 
 background:
 linear-gradient(135deg,
 rgba(255,255,255,.12),
 rgba(255,255,255,.04));
 
-padding:22px;
+padding:20px;
 border-radius:24px;
 
 backdrop-filter:blur(18px);
@@ -382,25 +348,21 @@ display:none;
 }
 
 #message-text{
-font-size:17px;
-line-height:1.6;
+font-size:16px;
+line-height:1.55;
 font-weight:600;
 }
 
-/* SHOT COUNTER */
-
 #shot-counter{
-font-size:13px;
+font-size:12px;
 letter-spacing:2px;
-opacity:.7;
-margin-bottom:10px;
+opacity:.68;
+margin-bottom:8px;
 text-transform:uppercase;
 }
 
-/* FINAL CARD */
-
 .final-card{
-margin-top:18px;
+margin-top:12px;
 background:rgba(255,255,255,.07);
 padding:22px;
 border-radius:24px;
@@ -422,8 +384,6 @@ display:flex;
 flex-direction:column;
 gap:14px;
 }
-
-/* CAMERA SHAKE */
 
 .shake{
 animation:shake .25s linear;
