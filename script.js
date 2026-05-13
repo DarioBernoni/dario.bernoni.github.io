@@ -20,18 +20,26 @@ let locked=false;
 
 const messages=[
 "Hi, I’m Dario. Data analyst, football mind, creative builder.",
-"3+ years between data, coaching and football operations. Referee Manager",
+"3+ years between data, coaching and football operations.",
 "I love turning unconventional ideas into real projects.",
 "Teamwork, creativity and football culture drive everything I do.",
 "You scored all 5 penalties. Now let’s talk."
 ];
 
-const commentary=[
+const goalCommentary=[
 "TOP CORNER",
 "CLINICAL",
-"ICE COLD",
-"PERFECT FINISH",
-"WORLD CLASS"
+"WORLD CLASS",
+"UNSTOPPABLE",
+"PERFECT FINISH"
+];
+
+const saveCommentary=[
+"BIG SAVE",
+"DENIED",
+"NOT THIS TIME",
+"SAFE HANDS",
+"READ PERFECTLY"
 ];
 
 startBtn.addEventListener("click",()=>{
@@ -40,11 +48,9 @@ startScreen.classList.remove("active");
 
 setTimeout(()=>{
 gameScreen.classList.add("active");
-},200);
+},180);
 
 });
-
-/* CAMERA SHAKE */
 
 function shakeScreen(){
 
@@ -56,12 +62,10 @@ document.body.classList.remove("shake");
 
 }
 
-/* BALL ANIMATION */
-
-function animateBall(targetX,targetY){
+function animateBall(targetX,targetY,isSaved){
 
 const startX=document.querySelector(".goal-area").offsetWidth/2;
-const startY=378;
+const startY=345;
 
 const duration=720;
 
@@ -94,6 +98,16 @@ if(progress<1){
 requestAnimationFrame(frame);
 
 }
+else{
+
+if(isSaved){
+
+ball.style.transform=
+`translate(-50%,-50%) scale(.72)`;
+
+}
+
+}
 
 }
 
@@ -101,55 +115,31 @@ requestAnimationFrame(frame);
 
 }
 
-/* GOALKEEPER AI */
-
 function goalkeeperMove(column){
 
 goalkeeper.classList.remove(
 "left",
 "right",
-"center",
-"prepare-left",
-"prepare-right",
-"prepare-center"
+"center"
 );
 
 if(column===0){
 
-goalkeeper.classList.add("prepare-left");
-
-setTimeout(()=>{
-goalkeeper.classList.remove("prepare-left");
 goalkeeper.classList.add("left");
-},120);
 
 }
-
 else if(column===2){
 
-goalkeeper.classList.add("prepare-right");
-
-setTimeout(()=>{
-goalkeeper.classList.remove("prepare-right");
 goalkeeper.classList.add("right");
-},120);
 
 }
-
 else{
 
-goalkeeper.classList.add("prepare-center");
-
-setTimeout(()=>{
-goalkeeper.classList.remove("prepare-center");
 goalkeeper.classList.add("center");
-},120);
 
 }
 
 }
-
-/* SHOOT */
 
 targets.forEach((target,index)=>{
 
@@ -176,16 +166,23 @@ rect.height/2-
 container.top;
 
 const column=index%3;
+const row=Math.floor(index/3);
 
-/* FX */
+/* SAVED SHOTS */
+
+const isSaved=(row===1);
 
 shakeScreen();
 
-goal.classList.add("animate");
-
 goalkeeperMove(column);
 
-animateBall(x,y);
+if(!isSaved){
+
+goal.classList.add("animate");
+
+}
+
+animateBall(x,y,isSaved);
 
 if(navigator.vibrate){
 
@@ -193,18 +190,28 @@ navigator.vibrate([40,30,40]);
 
 }
 
-/* MESSAGE */
-
 setTimeout(()=>{
 
+const commentary=isSaved
+?saveCommentary[currentShot]
+:goalCommentary[currentShot];
+
+const icon=isSaved
+?`<div class="result-icon saved">✕</div>`
+:`<div class="result-icon goal">✓</div>`;
+
 messageText.innerHTML=`
+
+${icon}
+
 <div style="
 font-size:11px;
 letter-spacing:3px;
 opacity:.55;
-margin-bottom:10px;
+margin-bottom:12px;
+text-transform:uppercase;
 ">
-${commentary[currentShot]}
+${commentary}
 </div>
 
 ${messages[currentShot]}
@@ -217,8 +224,6 @@ messageCard.classList.remove("hidden");
 });
 
 });
-
-/* NEXT */
 
 nextBtn.addEventListener("click",()=>{
 
@@ -245,17 +250,14 @@ messageCard.classList.add("hidden");
 goalkeeper.classList.remove(
 "left",
 "right",
-"center",
-"prepare-left",
-"prepare-right",
-"prepare-center"
+"center"
 );
 
 goal.classList.remove("animate");
 
 ball.style.left="50%";
 
-ball.style.top="378px";
+ball.style.top="345px";
 
 ball.style.transform=
 "translate(-50%,-50%) scale(1) rotate(0deg)";
