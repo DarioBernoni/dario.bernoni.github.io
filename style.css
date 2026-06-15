@@ -396,3 +396,24 @@ animation:shake .25s linear;
 75%{transform:translateX(-2px);}
 100%{transform:translateX(0);}
 }
+
+.site-footer{
+position:fixed;
+bottom:12px;
+left:0;
+right:0;
+text-align:center;
+z-index:999;
+}
+
+.site-footer a{
+font-size:12px;
+color:rgba(255,255,255,.7);
+text-decoration:none;
+letter-spacing:.5px;
+transition:.3s;
+}
+
+.site-footer a:hover{
+color:#12f7ff;
+}
