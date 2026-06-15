@@ -1,112 +1,75 @@
-const startBtn=document.getElementById("start-btn");
-const startScreen=document.getElementById("start-screen");
-const gameScreen=document.getElementById("game-screen");
-const finalScreen=document.getElementById("final-screen");
+const startBtn = document.getElementById("start-btn");
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementById("game-screen");
+const finalScreen = document.getElementById("final-screen");
 
-const targets=document.querySelectorAll(".target");
+const targets = document.querySelectorAll(".target");
 
-const ball=document.getElementById("ball");
-const goalkeeper=document.querySelector(".goalkeeper");
-const goal=document.querySelector(".goal");
+const ball = document.getElementById("ball");
+const goalkeeper = document.querySelector(".goalkeeper");
+const goal = document.querySelector(".goal");
 
-const messageCard=document.getElementById("message-card");
-const messageText=document.getElementById("message-text");
-const nextBtn=document.getElementById("next-btn");
+const messageCard = document.getElementById("message-card");
+const messageText = document.getElementById("message-text");
+const nextBtn = document.getElementById("next-btn");
 
-const shotCounter=document.getElementById("shot-counter");
+const shotCounter = document.getElementById("shot-counter");
 
-let currentShot=0;
-let locked=false;
+let currentShot = 0;
+let locked = false;
 
-const messages=[
-"Hi, I’m Dario. Data analyst, football mind, creative builder.",
+const messages = [
+"Hi, I'm Dario. Data analyst, football mind, creative builder.",
 "3+ years between data, coaching and football operations.",
 "I love turning unconventional ideas into real projects.",
 "Teamwork, creativity and football culture drive everything I do.",
-"You scored all 5 penalties. Now let’s talk."
+"You scored all 5 penalties. Now let's talk."
 ];
 
-const goalCommentary=[
-"TOP CORNER",
-"CLINICAL",
-"WORLD CLASS",
-"UNSTOPPABLE",
-"PERFECT FINISH"
-];
-
-const saveCommentary=[
-"BIG SAVE",
-"DENIED",
-"NOT THIS TIME",
-"SAFE HANDS",
-"READ PERFECTLY"
-];
-
-startBtn.addEventListener("click",()=>{
+startBtn.addEventListener("click", () => {
 
 startScreen.classList.remove("active");
 
-setTimeout(()=>{
+setTimeout(() => {
 gameScreen.classList.add("active");
-},180);
+}, 200);
 
 });
 
-function shakeScreen(){
+function animateBall(targetX, targetY) {
 
-document.body.classList.add("shake");
+const startX = document.querySelector(".goal-area").offsetWidth / 2;
+const startY = 345;
 
-setTimeout(()=>{
-document.body.classList.remove("shake");
-},250);
+const duration = 700;
+const startTime = performance.now();
 
-}
+function frame(time) {
 
-function animateBall(targetX,targetY,isSaved){
+let progress = (time - startTime) / duration;
 
-const startX=document.querySelector(".goal-area").offsetWidth/2;
-const startY=345;
+if (progress > 1) progress = 1;
 
-const duration=720;
+const ease = 1 - Math.pow(1 - progress, 3);
 
-const startTime=performance.now();
+const curve = Math.sin(progress * Math.PI) * 85;
 
-function frame(time){
+const currentX =
+startX + (targetX - startX) * ease;
 
-let progress=(time-startTime)/duration;
+const currentY =
+startY + (targetY - startY) * ease - curve;
 
-if(progress>1) progress=1;
+const scale = 1 - progress * .45;
 
-const ease=1-Math.pow(1-progress,3);
+ball.style.left = currentX + "px";
+ball.style.top = currentY + "px";
 
-const curve=Math.sin(progress*Math.PI)*90;
+ball.style.transform =
+`translate(-50%,-50%) scale(${scale}) rotate(${progress * 540}deg)`;
 
-const currentX=startX+(targetX-startX)*ease;
-
-const currentY=startY+(targetY-startY)*ease-curve;
-
-const scale=1-(progress*.45);
-
-ball.style.left=currentX+"px";
-ball.style.top=currentY+"px";
-
-ball.style.transform=
-`translate(-50%,-50%) scale(${scale}) rotate(${progress*520}deg)`;
-
-if(progress<1){
-
+if (progress < 1) {
 requestAnimationFrame(frame);
-
-}
-else{
-
-if(isSaved){
-
-ball.style.transform=
-`translate(-50%,-50%) scale(.72)`;
-
-}
-
 }
 
 }
@@ -115,7 +78,7 @@ requestAnimationFrame(frame);
 
 }
 
-function goalkeeperMove(column){
+function moveGoalkeeper(column) {
 
 goalkeeper.classList.remove(
 "left",
@@ -123,20 +86,14 @@ goalkeeper.classList.remove(
 "center"
 );
 
-if(column===0){
-
+if (column === 0) {
 goalkeeper.classList.add("left");
-
 }
-else if(column===2){
-
+else if (column === 2) {
 goalkeeper.classList.add("right");
-
 }
-else{
-
+else {
 goalkeeper.classList.add("center");
-
 }
 
 }
@@ -147,79 +104,55 @@ target.addEventListener("click",()=>{
 
 if(locked) return;
 
-locked=true;
+locked = true;
 
-const rect=target.getBoundingClientRect();
+const rect = target.getBoundingClientRect();
 
-const container=
+const container =
 document.querySelector(".goal-area")
 .getBoundingClientRect();
 
-const x=
-rect.left+
-rect.width/2-
+const x =
+rect.left +
+rect.width/2 -
 container.left;
 
-const y=
-rect.top+
-rect.height/2-
+const y =
+rect.top +
+rect.height/2 -
 container.top;
 
-const column=index%3;
-const row=Math.floor(index/3);
+const column = index % 3;
+const row = Math.floor(index / 3);
 
-/* SAVED SHOTS */
+const isSaved = row === 1;
 
-const isSaved=(row===1);
-
-shakeScreen();
-
-goalkeeperMove(column);
+moveGoalkeeper(column);
 
 if(!isSaved){
-
 goal.classList.add("animate");
-
 }
 
-animateBall(x,y,isSaved);
-
-if(navigator.vibrate){
-
-navigator.vibrate([40,30,40]);
-
-}
+animateBall(x,y);
 
 setTimeout(()=>{
 
-const commentary=isSaved
-?saveCommentary[currentShot]
-:goalCommentary[currentShot];
+let title = document.getElementById("result-title");
 
-const icon=isSaved
-?`<div class="result-icon saved">✕</div>`
-:`<div class="result-icon goal">✓</div>`;
+if(title){
 
-messageText.innerHTML=`
+title.innerHTML = isSaved
+? "PARATA ❌"
+: "GOOOL ⚽";
 
-${icon}
+}
 
-<div style="
-font-size:11px;
-letter-spacing:3px;
-opacity:.55;
-margin-bottom:12px;
-text-transform:uppercase;
-">
-${commentary}
-</div>
-
-${messages[currentShot]}
-`;
+messageText.innerHTML =
+messages[currentShot];
 
 messageCard.classList.remove("hidden");
 
-},820);
+},750);
 
 });
 
@@ -229,9 +162,7 @@ nextBtn.addEventListener("click",()=>{
 
 currentShot++;
 
-locked=false;
-
-if(currentShot>=messages.length){
+if(currentShot >= messages.length){
 
 gameScreen.classList.remove("active");
 
@@ -243,9 +174,14 @@ return;
 
 }
 
-shotCounter.innerText=`Penalty ${currentShot+1}/5`;
+locked = false;
+
+shotCounter.innerText =
+`Rigore ${currentShot + 1}/5`;
 
 messageCard.classList.add("hidden");
+
+goal.classList.remove("animate");
 
 goalkeeper.classList.remove(
 "left",
@@ -253,13 +189,10 @@ goalkeeper.classList.remove(
 "center"
 );
 
-goal.classList.remove("animate");
+ball.style.left = "50%";
+ball.style.top = "345px";
 
-ball.style.left="50%";
-
-ball.style.top="345px";
-
-ball.style.transform=
+ball.style.transform =
 "translate(-50%,-50%) scale(1) rotate(0deg)";
 
 });
