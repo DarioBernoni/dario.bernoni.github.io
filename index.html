@@ -1,1 +1,217 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Penalty CV - Dario Bernoni</title><link rel="stylesheet" href="style.css"/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"></head><body><div class="container"><section id="start-screen" class="screen active"><div class="logo">⚽</div><h1>Penalty CV</h1><p class="subtitle">Hai 5 rigori per scoprire chi sono</p><div class="card">Esperienza interattiva di circa 1 minuto</div><button id="start-btn" class="primary-btn">Inizia</button></section><section id="game-screen" class="screen"><div class="top-bar"><span id="shot-counter">Rigore 1/5</span></div><div class="goal-area"><div class="goal"></div><img src="goalkeeper.svg" class="goalkeeper"><img src="ball.svg" id="ball" class="ball"><div class="target-grid"><div class="target"></div><div class="target"></div><div class="target"></div><div class="target"></div><div class="target"></div><div class="target"></div><div class="target"></div><div class="target"></div><div class="target"></div></div></div><div id="message-card" class="message-card hidden"><h2>GOOOL ⚽</h2><p id="message-text"></p><br><button id="next-btn" class="primary-btn">Avanti</button></div></section><section id="final-screen" class="screen"><h1>Esperienza completata ⚽</h1><div class="final-card"><h2>Dario Bernoni</h2><p>Laureato in Ingegneria Informatica</p><div class="skills"><div class="skill"><span>Creatività</span><span>91</span></div><div class="skill"><span>Problem Solving</span><span>88</span></div><div class="skill"><span>Teamwork</span><span>86</span></div></div></div><div class="final-buttons"><a class="primary-btn" href="#" target="_blank">Scarica CV</a><a class="secondary-btn" href="#" target="_blank">LinkedIn</a></div></section></div><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Penalty CV - Dario Bernoni</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- START SCREEN -->
+
+        <section
+            id="start-screen"
+            class="screen active"
+        >
+
+            <div class="logo">⚽</div>
+
+            <h1>Penalty CV</h1>
+
+            <p class="subtitle">
+                Hai 5 rigori per scoprire chi sono
+            </p>
+
+            <div class="card">
+                Esperienza interattiva di circa 1 minuto
+            </div>
+
+            <button
+                id="start-btn"
+                class="primary-btn"
+            >
+                Inizia
+            </button>
+
+        </section>
+
+        <!-- GAME SCREEN -->
+
+        <section
+            id="game-screen"
+            class="screen"
+        >
+
+            <div class="top-bar">
+
+                <span id="shot-counter">
+                    Rigore 1/5
+                </span>
+
+            </div>
+
+            <div class="goal-area">
+
+                <div class="goal"></div>
+
+                <img
+                    src="goalkeeper.svg"
+                    class="goalkeeper"
+                    alt="Goalkeeper"
+                >
+
+                <img
+                    src="ball.svg"
+                    id="ball"
+                    class="ball"
+                    alt="Ball"
+                >
+
+                <div class="target-grid">
+
+                    <div class="target"></div>
+                    <div class="target"></div>
+                    <div class="target"></div>
+
+                    <div class="target"></div>
+                    <div class="target"></div>
+                    <div class="target"></div>
+
+                    <div class="target"></div>
+                    <div class="target"></div>
+                    <div class="target"></div>
+
+                </div>
+
+            </div>
+
+            <!-- MESSAGE CARD -->
+
+            <div
+                id="message-card"
+                class="message-card hidden"
+            >
+
+                <h2 id="result-title">
+                    GOOOL ⚽
+                </h2>
+
+                <!-- IMPORTANTE -->
+                <div id="message-text"></div>
+
+                <br>
+
+                <button
+                    id="next-btn"
+                    class="primary-btn"
+                >
+                    Avanti
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- FINAL SCREEN -->
+
+        <section
+            id="final-screen"
+            class="screen"
+        >
+
+            <h1>
+                Esperienza completata ⚽
+            </h1>
+
+            <div class="final-card">
+
+                <h2>
+                    Dario Bernoni
+                </h2>
+
+                <p>
+                    Laureato in Ingegneria Informatica
+                </p>
+
+                <div class="skills">
+
+                    <div class="skill">
+                        <span>Creatività</span>
+                        <span>91</span>
+                    </div>
+
+                    <div class="skill">
+                        <span>Problem Solving</span>
+                        <span>88</span>
+                    </div>
+
+                    <div class="skill">
+                        <span>Teamwork</span>
+                        <span>86</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="final-buttons">
+
+                <a
+                    class="primary-btn"
+                    href="#"
+                    target="_blank"
+                >
+                    Scarica CV
+                </a>
+
+                <a
+                    class="secondary-btn"
+                    href="#"
+                    target="_blank"
+                >
+                    LinkedIn
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
