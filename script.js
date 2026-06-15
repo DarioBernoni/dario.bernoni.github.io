@@ -18,12 +18,12 @@ const shotCounter = document.getElementById("shot-counter");
 let currentShot = 0;
 let locked = false;
 
-const messages = [
-"Hi, I'm Dario. Data analyst, football mind, creative builder.",
-"3+ years between data, coaching and football operations.",
-"I love turning unconventional ideas into real projects.",
-"Teamwork, creativity and football culture drive everything I do.",
-"You scored all 5 penalties. Now let's talk."
+const messages=[
+"Ciao, sono Dario Bernoni. Ingegnere Informatico con una forte passione per il calcio e l'analisi dei dati.",
+"Da oltre 3 anni lavoro tra Data Analysis, processi decisionali e supporto operativo nel mondo aziendale.",
+"Sono allenatore FIGC, ex arbitro regionale e oggi Referee Manager in Eccellenza.",
+"Mi piace trasformare dati, osservazioni e intuizioni in decisioni concrete e misurabili.",
+"Hai completato il Penalty CV. Ora puoi scoprire il mio percorso professionale completo."
 ];
 
 startBtn.addEventListener("click", () => {
