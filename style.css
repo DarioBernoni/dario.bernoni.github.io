@@ -153,8 +153,8 @@ backdrop-filter:blur(10px);
 
 .goal-area{
 position:relative;
-height:420px;
-margin-top:-6px;
+height:330px;
+margin-top:-10px;
 perspective:1000px;
 }
 
@@ -164,7 +164,7 @@ top:10px;
 left:50%;
 transform:translateX(-50%);
 width:96%;
-height:260px;
+height:220px;
 
 border:5px solid rgba(255,255,255,.92);
 border-bottom:none;
@@ -202,7 +202,7 @@ transform:translateX(-50%) scale(1);
 .goalkeeper{
 position:absolute;
 width:165px;
-top:95px;
+top:75px;
 left:50%;
 
 transform:
@@ -247,7 +247,7 @@ position:absolute;
 width:46px;
 height:46px;
 left:50%;
-top:345px;
+top:270px;
 transform:translate(-50%,-50%);
 z-index:7;
 pointer-events:none;
@@ -262,7 +262,7 @@ top:10px;
 left:50%;
 transform:translateX(-50%);
 width:96%;
-height:260px;
+height:220px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 grid-template-rows:repeat(3,1fr);
@@ -312,7 +312,7 @@ text-shadow:0 0 18px rgba(255,94,94,.5);
 }
 
 .message-card{
-margin-top:6px;
+margin-top:-20px;
 
 background:
 linear-gradient(135deg,
@@ -399,7 +399,7 @@ animation:shake .25s linear;
 
 .site-footer{
 position:fixed;
-bottom:12px;
+bottom:4px;
 left:0;
 right:0;
 text-align:center;
